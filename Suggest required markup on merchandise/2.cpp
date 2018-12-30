@@ -5,6 +5,7 @@ using namespace std;
 int main(){
 	double electricity, sale, currentProfit, profit, markup, merchandiseCost, increasedCost, employeesSalary, herSalary, rent, expenses;
 	string query;
+	
 	cout << "Enter the merchandise cost: $";
 	cin  >> merchandiseCost;
 	cout << "Enter the Employees' salaries: $";
@@ -16,9 +17,9 @@ int main(){
 	cout << "Enter the cost of electricity: $";
 	cin  >> electricity;
 	
-	expenses  = merchandiseCost+employeesSalary+herSalary+rent+electricity;
-	profit = merchandiseCost*10.0/100;
-	increasedCost = merchandiseCost + profit;
+		expenses  = merchandiseCost+employeesSalary+herSalary+rent+electricity;
+		profit = merchandiseCost*10.0/100;
+		increasedCost = merchandiseCost + profit;
 	
 	cout<<fixed<<setprecision(2);
 	cout << "Do you want to put sale on the merchandise?"<< endl << "Enter \"yes\" or \"no\"" <<endl;

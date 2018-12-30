@@ -4,24 +4,27 @@
 #include<fstream>
 using namespace std;
 int main() {
+	
 	float length, width, pmeter, radius, rArea, cArea, circum, beginBal, addBal, endBal, interest;
 	int age, asc;
  	string fname, lname;
 	char ch, ch2;
 	ifstream inFile;
 	ofstream outFile;
-	inFile.open("inData1.txt");
-	outFile.open("outData1.txt");
+	
+	inFile.open("inData.txt");
+	outFile.open("outData.txt");
+		
 	inFile>> length >> width >> radius >>fname >>lname >>age >>beginBal >>interest >>ch;
 	cout<< fixed <<setprecision(2);
-	rArea = length*width;
-	pmeter = 2*(length+width);
-	cArea = 3.1416*radius*radius;
-	circum = 2*3.1416*radius;
-	addBal = (beginBal/100)*3.50;
-	endBal = beginBal + addBal;
-	asc = ch + 1;
-	ch2 = asc;
+		rArea = length*width;
+		pmeter = 2*(length+width);
+		cArea = 3.1416*radius*radius;
+		circum = 2*3.1416*radius;
+		addBal = (beginBal/100)*3.50;
+		endBal = beginBal + addBal;
+		asc = ch + 1;
+		ch2 = asc;
 	
 	outFile<< fixed << setprecision(2) << "Rectangle: " << endl;
 	outFile<< "Length = "<< length << ", width = "<< width <<", area = "<<rArea; 
