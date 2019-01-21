@@ -1,0 +1,6 @@
+PF111,2,1,Programming Fundamentals
+CF333,1,2,Computing Fundamentals
+CA111,3,2,Calculus
+IS211,1,4,Islamiat
+SE433,3,4,Software Engineering
+AI340,2,3,Artificial Intelligence
