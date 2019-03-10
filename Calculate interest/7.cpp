@@ -15,7 +15,7 @@ int d1, d2;
 	cin  >> d2;
 	cout << "Enter the interest rate per month: ";
 	cin  >> interestRate;
-	
+
 	averageDailyBalance = (netBalance*d1 - payment * d2)/d1;
 	interest = averageDailyBalance * interestRate;
 
