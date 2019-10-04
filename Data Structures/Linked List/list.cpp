@@ -1,7 +1,6 @@
-//This Program contains the list class. We declared insert, insert at end, insert at beginning, update value by index,
-//update value by using previous value and print the link list
-
-//Added node.cpp file
+/**
+ * List Class. Uses node class to initialize a list of nodes.
+ */
 #include "node.cpp"
 #include <iostream>
 
@@ -10,14 +9,13 @@ using namespace std;
 //Declared class list in which we defined methods we want to implement on Link List
 class list
 {
-
-	//Pointer which has the address of top
+	// Has the address of the first/top node.
 	node *headNode;
 
 	//pointer which points to the current Node
 	node *currentNode;
 
-	// Size of Linked List
+	// Size of the Linked List
 	int size;
 
 public:
@@ -29,8 +27,16 @@ public:
 		size = 0;
 	}
 
-	// Inserts a new node in the list
-	void insert(int number)
+	// Moves the current node to start of the list.
+	void start()
+	{
+		currentNode = headNode;
+	}
+
+	/**
+	 * Setter Functions.
+	 */
+	void insert(int number) // Inserts a new node in the list.
 	{
 		if (currentNode != NULL)
 		{
@@ -44,19 +50,19 @@ public:
 				currentNode->setNextNode(0);
 				size++;
 			}
-			else
+			else // If the current node is somewhere in the middle.
 			{
 				node *newNode = new node();
 				newNode->setNextNode(currentNode->getNextNode());		// Sets the next node to the node after new node.
 				currentNode->setNextNode(newNode);						// Sets the new node the node after current node.
 				newNode->setPreviousNode(currentNode);					// Sets current node to the previous of new node.
-				(currentNode->getNextNode())->setPreviousNode(newNode); // Sets the previous node of next node to incoming node.
+				(currentNode->getNextNode())->setPreviousNode(newNode); // Sets the previous node of next node to new node.
 				currentNode = newNode;
 				currentNode->setValue(number);
 				size++;
 			}
 		}
-		else
+		else // If the incoming node is the first node in the list.
 		{
 			node *temp = new node();
 			headNode = temp;

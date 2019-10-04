@@ -1,39 +1,39 @@
-// DSA Lab 2.cpp : This program is about linked list.
-//
+/*
+Node Class.
+*/
 
 #include <iostream>
 
 using namespace std;
 
-//Declaring a node class
 class node
 {
-
-	//Declaring private data members
 	int value;
 	node *nextNode;
 	node *previousNode;
 
 public:
-	//declaring a function which sets the value in the node
+	/**
+	 * Setter Functions
+	 */
 	void setValue(int v)
 	{
 		value = v;
 	}
 
-	//Function used to move to next Node
-	void setNextNode(node *nn)
+	void setNextNode(node *newNode)
 	{
-		nextNode = nn;
+		nextNode = newNode;
 	}
 
-	//Function used to move to previous Node
-	void setPreviousNode(node *nn)
+	void setPreviousNode(node *newNode)
 	{
-		previousNode = nn;
+		previousNode = newNode;
 	}
 
-	// Returns the value stored in a node
+	/**
+	 * Getter Functions.
+	 */
 	int getValue()
 	{
 		return value;
