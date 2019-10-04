@@ -19,18 +19,24 @@ class list
 	int size;
 
 public:
-	// Sets all pointers to NULL and size to zero
-	list()
+	list() // Sets all pointers to NULL and size to zero
 	{
 		headNode = NULL;
 		currentNode = NULL;
 		size = 0;
 	}
 
-	// Moves the current node to start of the list.
-	void start()
+	void start() // Moves the current node to start of the list.
 	{
 		currentNode = headNode;
+	}
+
+	void move() // Moves current node to the next node.
+	{
+		if (currentNode->getNextNode() != 0)
+		{
+			currentNode = currentNode->getNextNode();
+		}
 	}
 
 	/**
@@ -74,30 +80,28 @@ public:
 		}
 	}
 
-	// Inserts a new node at the start of Link List
-	void insertAtBegin(int number)
+	void insertAtStart(int number) // Inserts a new node at the start of the list.
 	{
-
 		start();
-		node *temp = new node();
-		temp->setNextNode(currentNode);
-		currentNode = temp;
-		headNode = temp;
+		node *newNode = new node();
+		newNode->setNextNode(currentNode);
+		currentNode = newNode;
+		headNode = newNode;
 		currentNode->setValue(number);
 		size++;
 	}
 
-	// Inserts a new node at the end of Link List
-	void insertAtEnd(int number)
+	void insertAtEnd(int number) // Inserts a new node at the end of the list.
 	{
 		start();
 		for (int i = 0; i < size; i++)
 		{
 			move();
 		}
-		node *temp = new node();
-		currentNode->setNextNode(temp);
-		currentNode = temp;
+		node *newNode = new node();
+		currentNode->setNextNode(newNode);
+		newNode->setPreviousNode(currentNode);
+		currentNode = newNode;
 		currentNode->setValue(number);
 		currentNode->setNextNode(0);
 		size++;
