@@ -214,20 +214,108 @@ public:
 	}
 */
 
-	// void deleteNode(int valueOfNode)
-	// {
-	// 	start();
-	// 	while (currentNode->getNextNode() != 0)
-	// 	{
-	// 		if (currentNode->getValue() == valueOfNode)
-	// 		{
-	// 			lastCurrentNode->setNextNode(currentNode->getNextNode());
-	// 			delete currentNode;
-	// 			currentNode = lastCurrentNode;
-	// 			break;
-	// 		}
-	// 		move();
-	// 	}
-	// 	size--;
-	// }
+		//Function to delete a node from list
+
+	void deleteNode(int valueOfNode) {
+
+		start();
+
+		for (int i = 0; i < size; i++) {
+
+			if (currentNode->getValue() == valueOfNode) {
+
+				if (currentNode->getNextNode() != NULL) {
+
+					if (currentNode == headNode) {
+
+						if (size == 1) {
+							headNode = NULL;
+							delete currentNode;
+							currentNode = headNode;
+							headNode->setNextNode(0);
+							headNode->setPreviousNode(0);
+							break;
+						}
+						else {
+							cout << "\nheadNode\n";
+							headNode = currentNode->getNextNode();
+							headNode->setPreviousNode(0);
+							delete currentNode;
+							currentNode = headNode;
+							break;
+						}
+					}
+					else {
+						cout << "\n In the middle\n";
+						node *ptr;
+						ptr = currentNode;
+						(currentNode->getPreviousNode())->setNextNode(currentNode->getNextNode());
+						currentNode = currentNode->getPreviousNode();
+						(currentNode->getNextNode())->setPreviousNode(currentNode);
+						delete ptr;
+						break;
+					}
+				}
+				else {
+					cout << "\nlastNode\n";
+					node *ptr;
+					ptr = currentNode;
+					currentNode = currentNode->getPreviousNode();
+					currentNode->setNextNode(0);
+					delete ptr;
+					break;
+				}
+			}
+
+			move();
+		}
+		size--;
+	}
+	
+	//Deleting a node by its position in the link list
+	
+	void deleteNodeByPosition(int index) {
+
+		start();
+
+		for (int i = 0; i < index - 1; i++) {
+			move();
+		}
+		if (currentNode->getNextNode() != NULL) {
+
+			if (currentNode == headNode) {
+
+				if (size == 1) {
+					headNode = NULL;
+					delete currentNode;
+					currentNode = headNode;
+					headNode->setNextNode(0);
+					headNode->setPreviousNode(0);
+				}
+				else {
+					headNode = currentNode->getNextNode();
+					headNode->setPreviousNode(0);
+					delete currentNode;
+					currentNode = headNode;
+				}
+			}
+			else {
+				node *ptr;
+				ptr = currentNode;
+				(currentNode->getPreviousNode())->setNextNode(currentNode->getNextNode());
+				currentNode = currentNode->getPreviousNode();
+				(currentNode->getNextNode())->setPreviousNode(currentNode);
+				delete ptr;
+			}
+		}
+		else {
+			node *ptr;
+			ptr = currentNode;
+			currentNode = currentNode->getPreviousNode();
+			currentNode->setNextNode(0);
+			delete ptr;
+		}
+
+		size--;
+	}
 };
