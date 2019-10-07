@@ -6,13 +6,11 @@
 
 using namespace std;
 
-//Declared class list in which we defined methods we want to implement on Link List
 class list
 {
 	// Has the address of the first/top node.
 	node *headNode;
 
-	//pointer which points to the current Node
 	node *currentNode;
 
 	// Size of the Linked List
@@ -36,6 +34,14 @@ public:
 		if (currentNode->getNextNode() != 0)
 		{
 			currentNode = currentNode->getNextNode();
+		}
+	}
+
+	void reverse()
+	{
+		if (currentNode->getPreviousNode() != 0)
+		{
+			currentNode = currentNode->getPreviousNode();
 		}
 	}
 
@@ -107,19 +113,17 @@ public:
 		size++;
 	}
 
-	// Updates value of a node by using index of that node
-	void updateValueByIndex(int newValue, int index)
+	void updateValueByIndex(int newValue, int index) // Updates value of a node by using its index.
 	{
 		start();
-		for (int i = 0; i < index - 1; i++)
+		for (int i = 0; i < index; i++)
 		{
 			move();
 		}
 		currentNode->setValue(newValue);
 	}
 
-	// Updates value of a node by using previous value of that node
-	void updateValue(int newValue, int previousValue)
+	void updateValue(int newValue, int previousValue) // Updates value of a node using previous value.
 	{
 		start();
 		while (currentNode->getNextNode() != 0)
@@ -133,49 +137,6 @@ public:
 		}
 	}
 
-	// Gets size of Link List
-	int getSize()
-	{
-		return size;
-	}
-
-	// Gets value of a specific node
-	int get()
-	{
-		return currentNode->getValue();
-	}
-
-	// Moves at the start of the Link List
-	void start()
-	{
-		currentNode = headNode;
-	}
-
-	// Moves to next Node
-	void move()
-	{
-		if (currentNode->getNextNode() != 0)
-		{
-			currentNode = currentNode->getNextNode();
-		}
-	}
-
-	void reverse()
-	{
-		if (currentNode->getPreviousNode() != 0)
-		{
-			currentNode = currentNode->getPreviousNode();
-		}
-	}
-
-	void checkReverse()
-	{
-		cout << "Current Node is: " << currentNode->getValue();
-		reverse();
-		cout << endl
-			 << "Current Node after reverse is: " << currentNode->getValue();
-	}
-
 	void print()
 	{
 		if (headNode == NULL)
@@ -187,13 +148,43 @@ public:
 			start();
 			for (int i = 0; i < size; i++)
 			{
-				cout << get() << endl;
+				cout << currentNode->getValue() << endl;
 				if (i < (size - 1))
 				{
 					move();
 				}
 			}
 		}
+	}
+
+	void printReverse()
+	{
+		if (headNode == NULL)
+		{
+			cout << "Link List is empty";
+		}
+		else
+		{
+			start();
+			for (int i = 0; i < size; i++)
+			{
+				move();
+			}
+
+			cout << currentNode->getValue() << endl;
+			if (i < (size - 1))
+			{
+				move();
+			}
+		}
+	}
+
+	void checkReverse()
+	{
+		cout << "Current Node is: " << currentNode->getValue();
+		reverse();
+		cout << endl
+			 << "Current Node after reverse is: " << currentNode->getValue();
 	}
 
 	/*	void ascendingSort() {
