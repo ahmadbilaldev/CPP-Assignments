@@ -1,30 +1,26 @@
 /**
- * List Class. Uses node class to initialize a list of nodes.
+ * List Class. Uses node class to initialize a doubleList of nodes.
  */
 #include "node.cpp"
 #include <iostream>
 
 using namespace std;
 
-class list
+class doubleList
 {
-	// Has the address of the first/top node.
-	node *headNode;
-
+	node *headNode; // Has the address of the first/top node.
 	node *currentNode;
-
-	// Size of the Linked List
-	int size;
+	int size; // Size of the Linked List
 
 public:
-	list() // Sets all pointers to NULL and size to zero
+	doubleList() // Sets all pointers to NULL and size to zero
 	{
 		headNode = NULL;
 		currentNode = NULL;
 		size = 0;
 	}
 
-	void start() // Moves the current node to start of the list.
+	void start() // Moves the current node to start of the doubleList.
 	{
 		currentNode = headNode;
 	}
@@ -37,9 +33,9 @@ public:
 		}
 	}
 
-	void reverse()
+	void reverse() // Reverses current node to previous node.
 	{
-		if (currentNode->getPreviousNode() != 0)
+		if (currentNode->getPreviousNode() != NULL)
 		{
 			currentNode = currentNode->getPreviousNode();
 		}
@@ -48,11 +44,11 @@ public:
 	/**
 	 * Setter Functions.
 	 */
-	void insert(int number) // Inserts a new node in the list.
+	void insert(int number) // Inserts a new node in the doubleList.
 	{
 		if (currentNode != NULL)
 		{
-			if (currentNode->getNextNode() == 0) // If the current node is the last node of the list.
+			if (currentNode->getNextNode() == 0) // If the current node is the last node of the doubleList.
 			{
 				node *newNode = new node();
 				currentNode->setNextNode(newNode);
@@ -74,7 +70,7 @@ public:
 				size++;
 			}
 		}
-		else // If the incoming node is the first node in the list.
+		else // If the incoming node is the first node in the doubleList.
 		{
 			node *temp = new node();
 			headNode = temp;
@@ -86,7 +82,7 @@ public:
 		}
 	}
 
-	void insertAtStart(int number) // Inserts a new node at the start of the list.
+	void insertAtStart(int number) // Inserts a new node at the start of the doubleList.
 	{
 		start();
 		node *newNode = new node();
@@ -97,7 +93,7 @@ public:
 		size++;
 	}
 
-	void insertAtEnd(int number) // Inserts a new node at the end of the list.
+	void insertAtEnd(int number) // Inserts a new node at the end of the doubleList.
 	{
 		start();
 		for (int i = 0; i < size; i++)
@@ -126,7 +122,7 @@ public:
 	void updateValue(int newValue, int previousValue) // Updates value of a node using previous value.
 	{
 		start();
-		while (currentNode->getNextNode() != 0)
+		for (int i = 0; i < size; i++)
 		{
 			if (currentNode->getValue() == previousValue)
 			{
@@ -149,7 +145,7 @@ public:
 			for (int i = 0; i < size; i++)
 			{
 				cout << currentNode->getValue() << endl;
-				if (i < (size - 1))
+				if (i < (size - 1)) // Don't move in the last iteration.
 				{
 					move();
 				}
@@ -161,20 +157,23 @@ public:
 	{
 		if (headNode == NULL)
 		{
-			cout << "Link List is empty";
+			cout << "List is empty";
 		}
 		else
 		{
 			start();
-			for (int i = 0; i < size; i++)
+			for (int i = 0; i < size; i++) // Move to the last node.
 			{
 				move();
 			}
 
-			cout << currentNode->getValue() << endl;
-			if (i < (size - 1))
+			for (int i = size; i > 0; i--)
 			{
-				move();
+				cout << currentNode->getValue() << endl;
+				if (i > 1) // Don't move in the last iteration.
+				{
+					reverse();
+				}
 			}
 		}
 	}
@@ -187,15 +186,19 @@ public:
 			 << "Current Node after reverse is: " << currentNode->getValue();
 	}
 
-	/*	void ascendingSort() {
+	void ascendingSort()
+	{
 		int temp = 0;
 		node *ptr = new node();
 		ptr = headNode;
 		start();
-		for (int i = 0; i < size-1; i++) {
+		for (int i = 0; i < size - 1; i++)
+		{
 			move();
-			for (int j = i + 1; j < size; j++) {
-				if (currentNode->getValue() < ptr->getValue()) {
+			for (int j = i + 1; j < size; j++)
+			{
+				if (currentNode->getValue() < ptr->getValue())
+				{
 					temp = currentNode->getValue();
 					currentNode->setValue(ptr->getValue());
 					ptr->setValue(temp);
@@ -203,94 +206,89 @@ public:
 			}
 		}
 	}
-*/
 
-		//Function to delete a node from list
-
-	void deleteNode(int valueOfNode) {
-
+	void deleteNodeByValue(int valueOfNode) // Deletes a node
+	{
 		start();
 
-		for (int i = 0; i < size; i++) {
-
-			if (currentNode->getValue() == valueOfNode) {
-
-				if (currentNode->getNextNode() != NULL) {
-
-					if (currentNode == headNode) {
-
-						if (size == 1) {
+		for (int i = 0; i < size; i++)
+		{
+			if (currentNode->getValue() == valueOfNode)
+			{
+				if (currentNode->getNextNode() != NULL)
+				{
+					if (currentNode == headNode)
+					{
+						if (size == 1)
+						{
 							headNode = NULL;
 							delete currentNode;
 							currentNode = headNode;
 							headNode->setNextNode(0);
 							headNode->setPreviousNode(0);
-							break;
 						}
-						else {
-							cout << "\nheadNode\n";
+						else
+						{
 							headNode = currentNode->getNextNode();
 							headNode->setPreviousNode(0);
 							delete currentNode;
 							currentNode = headNode;
-							break;
 						}
 					}
-					else {
-						cout << "\n In the middle\n";
+					else
+					{
 						node *ptr;
 						ptr = currentNode;
 						(currentNode->getPreviousNode())->setNextNode(currentNode->getNextNode());
 						currentNode = currentNode->getPreviousNode();
 						(currentNode->getNextNode())->setPreviousNode(currentNode);
 						delete ptr;
-						break;
 					}
 				}
-				else {
-					cout << "\nlastNode\n";
+				else
+				{
 					node *ptr;
 					ptr = currentNode;
 					currentNode = currentNode->getPreviousNode();
 					currentNode->setNextNode(0);
 					delete ptr;
-					break;
 				}
 			}
-
 			move();
 		}
 		size--;
 	}
-	
-	//Deleting a node by its position in the link list
-	
-	void deleteNodeByPosition(int index) {
 
+	void deleteNodeByPosition(int index) // Deletes a node according to its postion
+	{
 		start();
 
-		for (int i = 0; i < index - 1; i++) {
+		for (int i = 0; i < index - 1; i++)
+		{
 			move();
 		}
-		if (currentNode->getNextNode() != NULL) {
-
-			if (currentNode == headNode) {
-
-				if (size == 1) {
+		if (currentNode->getNextNode() != NULL)
+		{
+			if (currentNode == headNode)
+			{
+				if (size == 1)
+				{
 					headNode = NULL;
 					delete currentNode;
 					currentNode = headNode;
 					headNode->setNextNode(0);
 					headNode->setPreviousNode(0);
 				}
-				else {
+				else
+				{
 					headNode = currentNode->getNextNode();
 					headNode->setPreviousNode(0);
 					delete currentNode;
 					currentNode = headNode;
 				}
 			}
-			else {
+			else
+			{
 				node *ptr;
 				ptr = currentNode;
 				(currentNode->getPreviousNode())->setNextNode(currentNode->getNextNode());
@@ -299,14 +297,14 @@ public:
 				delete ptr;
 			}
 		}
-		else {
+		else
+		{
 			node *ptr;
 			ptr = currentNode;
 			currentNode = currentNode->getPreviousNode();
 			currentNode->setNextNode(0);
 			delete ptr;
 		}
-
 		size--;
 	}
 };
