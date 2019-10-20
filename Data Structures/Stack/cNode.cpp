@@ -1,3 +1,7 @@
+/**
+ * cNode class
+ */
+
 #include <iostream>
 #include "cNode.h"
 using namespace std;
