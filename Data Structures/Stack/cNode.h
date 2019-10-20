@@ -10,7 +10,7 @@ public:
 
     cNode(int d);
 
-    cNode &setData(int data);
+    cNode &setData(int input);
 
     int getData();
 

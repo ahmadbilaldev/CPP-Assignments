@@ -1,31 +1,26 @@
 #include <iostream>
-#include cNode.h
+#include "cNode.h"
 using namespace std;
 
-class cNode
+cNode::cNode() : data(0) {}
+
+cNode::cNode(int d) : data(d) {}
+
+int cNode::getData()
 {
-    int data;
+    return data;
+}
 
-public:
-    cNode *nextNode;
+cNode &cNode::setData(int input)
+{
+    this->data = input;
+    return *this;
+}
 
-    cNode() {}
+void cNode::print() const
+{
+    cout << endl
+         << data;
+}
 
-    cNode(int d) : data(d) {}
-
-    int getData() const
-    {
-        return data;
-    }
-
-    int &setData()
-    {
-        this->data = data;
-    }
-
-    void print()
-    {
-        cout << endl
-             << data;
-    }
-};
+cNode::~cNode() {}
