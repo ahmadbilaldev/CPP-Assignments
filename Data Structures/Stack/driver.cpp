@@ -116,17 +116,25 @@ int main()
 
     if (inFile.is_open())
     {
-        cout << "\nReading data of Stack1 from file data.txt" << endl;
         testStack.readFromFile(inFile);
-        cout << "Done Reading from file !\n";
     }
     else
     {
-        cout << "The file is not opened for the Read operation !" << endl;
+        cout << "Error, file not opened.!" << endl;
     }
 
-    cout << "Printing stack object Read from file" << endl;
+    cout << "Reading from file." << endl;
     testStack.print();
 
     inFile.close();
+
+    // Copy constructor.
+    cout << "Copy constuctor to copy old stack into a new one:" << endl;
+    cStack stack2(stack);
+    stack2.print();
+
+    // Assignment operator.
+    cout << "Using assignemnt operator to copy old stack to a new stack: " << endl;
+    cStack stackDestination = stack;
+    stackDestination.print();
 }
