@@ -12,16 +12,14 @@ class cNode
 
 public:
     cNode *nextNode;
-
     cNode();
-
     cNode(int d);
-
     cNode &setData(int input);
-
     int getData();
-
+    cNode(ifstream &inFile);
+    void readNodeFromFile(ifstream &inFile);
+    cNode(ofstream &oFile);
+    void writeNodeToFile(ofstream &oFile);
     void print() const;
-
     ~cNode();
 };

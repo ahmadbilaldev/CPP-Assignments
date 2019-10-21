@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "cStack.h"
+#include <fstream>
 using namespace std;
 
 cStack::cStack() : top(NULL) {}
@@ -65,6 +66,92 @@ cStack::cStack(const cStack &src)
             sPtr = sPtr->nextNode;
             dPtr = dPtr->nextNode;
         }
+    }
+}
+
+// Constructor. Takes nodes as input from file.
+cStack::cStack(ifstream &inFile) : top(NULL), count(0)
+{
+    int size;
+    inFile.read((char *)&size, sizeof(size));
+    if (size > 0)
+    {
+        cNode *rptr;
+        rptr = top = new cNode(inFile);
+        count = size;
+        for (int i = 1; i < count; ++i)
+        {
+            rptr->nextNode = new cNode(inFile);
+            rptr = rptr->nextNode;
+        }
+        rptr->nextNode = NULL;
+        rptr = NULL;
+    }
+}
+
+// Constructor. Outputs nodes to file.
+cStack::cStack(ofstream &outFile)
+{
+    outFile.write((char *)&count, sizeof(count));
+    if (count > 0)
+    {
+        cNode *ptr = top;
+        ptr = new cNode(outFile);
+        for (int i = 1; i < count; i++)
+        {
+            ptr->nextNode = new cNode(outFile);
+            ptr = ptr->nextNode;
+        }
+    }
+}
+
+// Writes nodes to file.
+void cStack::writeToFile(ofstream &oFile)
+{
+    if (!(oFile.is_open()))
+    {
+        cout << "File is not opened !" << endl;
+    }
+    else
+    {
+        oFile.write((char *)&this->count, sizeof(count));
+
+        if (count > 0)
+        {
+            cNode *rptr = top;
+            for (int i = 0; i < count; ++i)
+            {
+                rptr->writeNodeToFile(oFile);
+                rptr = rptr->nextNode;
+            }
+        }
+    }
+}
+
+// Takes nodes as input from file.
+void cStack::readFromFile(ifstream &inFile)
+{
+
+    if (true)
+    {
+        cStack temp;
+        temp.top = this->top;
+    }
+
+    inFile.read((char *)&count, sizeof(count));
+    cout << "count = " << count << endl;
+
+    if (count > 0)
+    {
+        cNode *temp;
+        temp = top = new cNode(inFile);
+
+        for (int i = 1; i < count; ++i)
+        {
+            temp->nextNode = new cNode(inFile);
+            temp = temp->nextNode;
+        }
+        temp->nextNode = NULL;
     }
 }
 

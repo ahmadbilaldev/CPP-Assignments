@@ -5,6 +5,7 @@
 #include <iostream>
 #include "cNode.h"
 #include "cStack.h"
+#include <fstream>
 
 using namespace std;
 
@@ -92,4 +93,40 @@ int main()
 
     cout << "Using getter function to get value of a node: " << endl;
     cout << node4->getData();
+
+    // Testing File I/O.
+    ofstream outFile;
+    outFile.open("file.txt");
+
+    cout << "Writing to output file." << endl;
+    if (outFile.is_open())
+    {
+        stack.writeToFile(outFile);
+    }
+    else
+    {
+        cout << "Error, file not opened." << endl;
+    }
+
+    outFile.close();
+
+    ifstream inFile;
+    inFile.open("input.txt");
+    cStack testStack;
+
+    if (inFile.is_open())
+    {
+        cout << "\nReading data of Stack1 from file data.txt" << endl;
+        testStack.readFromFile(inFile);
+        cout << "Done Reading from file !\n";
+    }
+    else
+    {
+        cout << "The file is not opened for the Read operation !" << endl;
+    }
+
+    cout << "Printing stack object Read from file" << endl;
+    testStack.print();
+
+    inFile.close();
 }

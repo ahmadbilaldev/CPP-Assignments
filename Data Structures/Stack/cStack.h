@@ -10,6 +10,7 @@ using namespace std;
 class cStack
 {
     cNode *top;
+    int count;
 
 public:
     cStack(); // Default constructor.
@@ -19,6 +20,14 @@ public:
     cStack &push(cNode *&node); // Push a new node in stack.
 
     cNode *pop(); // Pop the first node.
+
+    // Constructors for file I/O
+    cStack(ifstream &inFile);
+    cStack(ofstream &outFile);
+
+    // Member funcitons for file I/O.
+    void writeToFile(ofstream &oFile);
+    void readFromFile(ifstream &inFile);
 
     void print() const; // Print all nodes.
 
