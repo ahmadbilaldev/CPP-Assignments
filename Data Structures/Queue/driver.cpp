@@ -100,6 +100,6 @@ int main()
     // Copy constructor.
     cQueue queueDestination(queue);
 
-    cout << "After using copy constructor to copy queue into queueDestination : ";
+    cout << "After using copy constructor to copy queue into queueDestination: ";
     queueDestination.print();
 }

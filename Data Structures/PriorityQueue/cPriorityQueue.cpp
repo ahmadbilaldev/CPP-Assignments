@@ -62,7 +62,7 @@ cPriorityQueue::~cPriorityQueue()
 {
     cNode *ptr = top;
 
-    tail = NULL; // Tail is going to NULL and we can make remaining code.
+    tail = NULL;
 
     while (ptr)
     {

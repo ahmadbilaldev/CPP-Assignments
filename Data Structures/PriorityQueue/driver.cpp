@@ -34,8 +34,7 @@ int main()
     cout << "Nodes in Prioirity Queue are: " << endl;
     pq.print();
 
-
-	// Declaring a node and setting its priority.
+    // Declaring a node and setting its priority.
 
     cNode *ptr = new cNode(110);
     ptr->setPriority(2);
@@ -52,29 +51,22 @@ int main()
     {
         cout << "Queue is not empty" << endl;
     }
-    cout << "isNotEmpty check: " << endl;
-    if (pq.isNotEmpty())
-    {
-        cout << "Queue is not empty" << endl;
-    }
-    else
-    {
-        cout << "Queue is Empty" << endl;
-    }
 
     // Printing.
     cout << "Nodes in Prioirity Queue are: " << endl;
     pq.print();
 
-	// Deleting the node.
+    // Deleting the node.
     pq.removeFromPriorityQue();
 
     cout << "Priority Queue after deleting the node: " << endl;
-    if( pq.isEmpty() ) {
+    if (pq.isEmpty())
+    {
         cout << "Priority Queue is empty.";
     }
-    else {
-    pq.print();
+    else
+    {
+        pq.print();
     }
 
     // Adding more nodes using setter function.
@@ -104,8 +96,8 @@ int main()
     pq.addInPriorityQue(node5);
 
     cNode *node6 = new cNode();
-    node12->setData(6);
-    node12->setPriority(50);
+    node6->setData(6);
+    node6->setPriority(50);
     pq.addInPriorityQue(node6);
 
     cout << "Priority Queue after adding multiple nodes: " << endl;
@@ -121,11 +113,10 @@ int main()
     // Copy constructor.
     cPriorityQueue queueDestination(pq);
 
-    cout << "";
+    cout << "Using copy constructor, old queue is copied in a new queueDestination: ";
     queueDestination.print();
-    /*
-	Checking Assignment Operator
-	*/
+
+    // Assignment Operator
     cout << "Using assignment operator to copy queueDestination to another queue: " << endl;
     cPriorityQueue queue1 = queueDestination;
     queue1.print();
