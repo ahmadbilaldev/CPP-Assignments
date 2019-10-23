@@ -102,4 +102,9 @@ int main()
 
     cout << "After using copy constructor to copy queue into queueDestination: ";
     queueDestination.print();
+
+    // Assignment operator.
+    cout << "Using assignemnt operator to copy old stack to a new stack: " << endl;
+    cQueue queueDestination2 = queueDestination;
+    queueDestination2.print();
 }
