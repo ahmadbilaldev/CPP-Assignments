@@ -6,11 +6,45 @@
 #include "cNode.h"
 #include "cStack.h"
 #include <fstream>
-
+#include <string>
 using namespace std;
 
 int main()
 {
+    cStack *s1 = new cStack();
+	string stri;
+	cout << "\nInput postfix expression\n";							//taking string input from user
+	getline(cin, stri, '\n');
+	bool flag;
+	flag = (s1->postfixPreCondition(stri));
+	do
+	{
+		if (!flag)
+		{
+			cout << "Wrong post fix expression";
+			cout << "\nInput postfix expression\n";							//taking string input from user
+			getline(cin, stri, '\n');
+			flag = (s1->postfixPreCondition(stri));
+		}
+	} while ((!flag));
+	s1->postFixEvaluation(stri);
+	cout << "\nResult of Post fix Evaluation on Stack s1 is: " << s1->pop()->getData();
+	cout << "\nInput prefix expression \n";							//taking string input from user
+	getline(cin, stri, '\n');
+	flag = (s1->prefixPreCondition(stri));
+	do
+	{
+		if (!flag)
+		{
+			cout << "Wrong pre fix expression";
+			cout << "\nInput prefix expression\n";							//taking string input from user
+			getline(cin, stri, '\n');
+			flag = (s1->prefixPreCondition(stri));
+		}
+	} while ((!flag));
+	s1->preFixEvaluation(stri);
+	cout << "\nResult of Pre fix Evaluation on Stack s1 is: " << s1->pop()->getData();
+	
     cStack stack;
     cNode node;
 
@@ -92,6 +126,7 @@ int main()
     // Using getter function to get value of a node.
 
     cout << "Using getter function to get value of a node: " << endl;
+    node4=new cNode();
     cout << node4->getData();
 
     // Testing File I/O.
