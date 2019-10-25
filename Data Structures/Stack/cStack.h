@@ -28,7 +28,10 @@ public:
     // Member funcitons for file I/O.
     void writeToFile(ofstream &oFile);
     void readFromFile(ifstream &inFile);
-
+    bool postfixPreCondition(string expr) const;			//Precondition to check expression is postfix or not
+	bool prefixPreCondition(string expr) const;				//Precondition to check expression is prefix or not
+	cStack& postFixEvaluation(string expr);					//For Post fix evaluation
+	cStack& preFixEvaluation(string expr);					//For Pre fix evaluation
     void print() const; // Print all nodes.
 
     cStack(const cStack &src); // Copy constructor for stack.
