@@ -168,8 +168,7 @@ cStack &cStack::operator=(const cStack &rObj)
     }
     if (true)
     {
-        cStack temp;
-        temp = rObj;
+        cStack temp = rObj;
         top = temp.top;
         temp.top = NULL;
         return *this;
